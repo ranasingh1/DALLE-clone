@@ -1,3 +1,8 @@
+import { EventEmitter } from 'events';
+
+// Set the default maximum number of listeners for EventEmitter
+EventEmitter.defaultMaxListeners = 20;
+
 import express from 'express';
 import * as dotenv from 'dotenv';
 import cors from 'cors';
@@ -12,7 +17,7 @@ const app = express();
 
 // Use cors middleware with specific options
 app.use(cors({
-  origin: ['http://localhost:5173', 'https://dalle-clone-liart.vercel.app/'],// Replace with your client's origin
+  origin: ['http://localhost:5173', 'https://dalle-clone-liart.vercel.app'],// Replace with your client's origin
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   optionsSuccessStatus: 204,
 }));
@@ -27,6 +32,7 @@ app.get('/', async (req, res) => {
     message: 'Hello from DALL.E!',
   });
 });
+
 
 const startServer = async () => {
   try {
